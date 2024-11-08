@@ -20,6 +20,6 @@ public class Movie {
   }
 
   public static int getInstances() {
-    return instances;
+    return Movie.instances;
   }
 }

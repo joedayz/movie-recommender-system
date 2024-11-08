@@ -1,34 +1,34 @@
 package pe.joedayz.movierecommendersystem;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import javax.inject.Named;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Component("CBF")
-public class ContentBasedFilter implements Filter{
+@Named("CBF")
+public class ContentBasedFilter implements Filter {
 
-  private static int instances = 0;
-
-  @Autowired
-  private Movie movie;
+  private Logger logger = LoggerFactory.getLogger(this.getClass());
 
   public ContentBasedFilter() {
-    instances++;
-    System.out.println("ContentBasedFilter constructor called");
+    logger.info("In ContentBasedFilter constructor method");
   }
 
-  @Lookup
-  public Movie getMovie() {
-    return movie;
-  }
 
-  public static int getInstances() {
-    return ContentBasedFilter.instances;
+  @PostConstruct
+  private void postConstruct(){
+    logger.info("In ContentBasedFilter.postConstruct() method");
   }
 
   public String[] getRecommendations(String movie){
     //logic of content based filter
     return new String[]{"Happy Feet", "Ice Age2", "Shark Tale"};
   }
+
+  @PreDestroy
+  private void preDestroy(){
+    logger.info("In ContentBasedFilter.preDestroy() method");
+  }
+
 }

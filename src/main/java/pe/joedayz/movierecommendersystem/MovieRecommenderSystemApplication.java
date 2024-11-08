@@ -11,19 +11,24 @@ public class MovieRecommenderSystemApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(MovieRecommenderSystemApplication.class, args);
 
-//		RecommenderImplementation recommender = context.getBean(RecommenderImplementation.class);
-//
-//
-//		String[] result = recommender.recommendMovies("Finding Dory");
-//		System.out.println(Arrays.toString(result));
+		ContentBasedFilter cbf = (ContentBasedFilter) context.getBean("CBF");
+		System.out.println("\nContentBasedFilter bean created with singleton scope: " );
+		System.out.println(cbf);
 
-//		CollaborativeFilter cf1 = context.getBean(CollaborativeFilter.class);
-//		CollaborativeFilter cf2 = context.getBean(CollaborativeFilter.class);
-//		CollaborativeFilter cf3 = context.getBean(CollaborativeFilter.class);
-//
-//		System.out.println(cf1);
-//		System.out.println(cf2);
-//		System.out.println(cf3);
+
+		Movie movie1 = cbf.getMovie();
+		Movie movie2 = cbf.getMovie();
+		Movie movie3 = cbf.getMovie();
+
+		System.out.println("\nMovie bean created with prototype scope: " );
+		System.out.println(movie1);
+		System.out.println(movie2);
+		System.out.println(movie3);
+
+		System.out.println("\nTotal instances of Movie created: " + Movie.getInstances());
+		System.out.println("Total instances of ContentBasedFilter created: " + ContentBasedFilter.getInstances());
+
+
 	}
 
 }

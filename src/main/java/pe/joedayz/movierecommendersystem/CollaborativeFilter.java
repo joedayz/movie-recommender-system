@@ -1,11 +1,8 @@
 package pe.joedayz.movierecommendersystem;
 
-import javax.inject.Named;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
-@Named("CF")
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Service("CF")
 public class CollaborativeFilter implements Filter {
 
   public CollaborativeFilter() {

@@ -8,15 +8,21 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 
-@Named
+@Service
 public class RecommenderImplementation {
 
 
   private Logger logger = LoggerFactory.getLogger(this.getClass());
 
   private Filter filter;
+
+  @Value("${recommender.implementation.favoriteMovie: Finding Nemo}")
+  private String favoriteMovie;
+
 
   @PostConstruct
   public void postConstruct(){
@@ -42,6 +48,10 @@ public class RecommenderImplementation {
   @PreDestroy
   public void preDestroy(){
     logger.info("In RecommenderImplementation.preDestroy() method");
+  }
+
+  public String getFavoriteMovie(){
+    return favoriteMovie;
   }
 
 

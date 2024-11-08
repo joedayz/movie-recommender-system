@@ -11,12 +11,12 @@ import org.springframework.context.annotation.FilterType;
 public class MovieRecommenderSystemApplication {
 
   public static void main(String[] args) {
+
     ApplicationContext context = SpringApplication.run(MovieRecommenderSystemApplication.class,
         args);
 
     RecommenderImplementation recommender = context.getBean(RecommenderImplementation.class);
-    System.out.println(recommender);
-    System.out.println(recommender.getFilter());
+    System.out.println(recommender.getFavoriteMovie());
 
 
   }

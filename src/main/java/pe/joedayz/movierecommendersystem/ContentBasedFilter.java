@@ -1,6 +1,7 @@
 package pe.joedayz.movierecommendersystem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ public class ContentBasedFilter implements Filter{
     System.out.println("ContentBasedFilter constructor called");
   }
 
+  @Lookup
   public Movie getMovie() {
     return movie;
   }
